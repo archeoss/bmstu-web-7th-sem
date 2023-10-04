@@ -1,0 +1,21 @@
+---
+version: "3.8"
+services:
+  bob-gui:
+    build:
+      context: ./
+      dockerfile: dockerfiles/alpine/Dockerfile
+    volumes:
+      - "./config.yaml:/config.yaml"
+    networks:
+      bobnet:
+        ipv4_address: 192.168.17.11
+    ports:
+      - "9000:9000"
+    command: "--config-file /config.yaml"
+networks:
+  bobnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.17.0/24

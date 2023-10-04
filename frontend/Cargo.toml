@@ -1,0 +1,21 @@
+[package]
+name = "frontend"
+build = "build.rs"
+version.workspace = true
+authors.workspace = true
+license-file.workspace = true
+edition.workspace = true
+readme.workspace = true
+repository.workspace = true
+
+[lib]
+name = "frontend"
+path = "build.rs"
+crate-type = ["lib"]
+
+[build-dependencies]
+tsync = "2"
+
+[dependencies]
+tsync = "2"
+

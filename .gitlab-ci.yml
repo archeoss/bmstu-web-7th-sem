@@ -1,0 +1,52 @@
+image: rust:1.70
+
+stages:
+  - build
+  - test
+  - publish
+  # - build_docker
+
+rust-build:
+  stage: build
+  script:
+    - cargo build --verbose
+  tags:
+    - qoollo-summer
+
+rust-test:
+  stage: test
+  script:
+    - cargo test --verbose
+  tags:
+    - qoollo-summer
+
+format-code:
+  stage: test
+  script:
+    - rustup component add rustfmt
+    - cargo fmt -- --check
+  tags:
+    - qoollo-summer
+
+rust-publish:
+  stage: publish
+  script:
+    - cargo build --verbose --release
+  artifacts:
+    paths:
+      - target/release/bob_management_gui
+    expire_in: 3 days
+  when: manual
+  tags:
+    - qoollo-summer
+
+# disable docker for now....
+# build_docker_image:
+#   stage: build_docker
+#   image: docker:latest
+#   script:
+#     # - docker login ...
+#     # - docker build -t bob-debian -f ./Dockerfile .
+#     # - docker push ...
+#   tags:
+#     - qoollo-summer

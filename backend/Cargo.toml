@@ -1,0 +1,67 @@
+[package]
+name = "backend"
+default-run = "backend"
+build = "../build.rs"
+description = "Bob Management GUI: Backend"
+publish = false
+keywords = [ "BOB", "Management", "GUI" ]
+version.workspace = true
+authors.workspace = true
+license-file.workspace = true
+edition.workspace = true
+readme.workspace = true
+repository.workspace = true
+
+[[bin]]
+name = "gen-openapi"
+path = "gen_openapi.rs"
+required-features = [ "swagger", "gen_api" ]
+
+[dependencies]
+# Backend (lib.rs)
+## Axum related
+axum = "0.6"
+axum-macros = "0.3"
+axum-login = "0.6"
+axum-sessions = "0.5"
+tower = "0.4"
+tower-http = { version = "0.4", features = ["cors", "fs"] }
+
+## Logging
+tracing = "0.1"
+file-rotate = "0.7"
+tracing-appender = "0.2"
+tracing-subscriber = "0.3"
+
+## Error Handling
+error-stack = "0.4"
+thiserror = "1.0"
+color-eyre = "0.6"
+
+## General
+tokio = { version = "1.32", features = ["rt", "macros", "rt-multi-thread" ] }
+hyper = "0.14"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+swagger = { version = "6.3", features = ["serdejson", "server", "client", "tls", "tcp"] }
+futures = "0.3"
+nutype = { vesrion = "0.3", features = ["serde", "regex"] }
+lazy_static = "1.4"
+regex = "1.9"
+rand = { version ="0.8", features = ["min_const_gen"] }
+percent-encoding = "2.3"
+
+## OpenAPI + Swagger
+utoipa = { version = "3.4", features = ["yaml", "axum_extras",  "chrono", "openapi_extensions"], optional = true }
+utoipa-swagger-ui = { version = "3.1", features = ["debug-embed", "axum"], optional = true }
+utoipa-redoc = { version = "0.1", features = ["axum"], optional = true }
+utoipa-rapidoc = { version = "0.1", features = ["axum"], optional = true }
+
+## CLI
+cli = { path = "../cli" }
+
+[features]
+default = [ "swagger", "frontend-bundle" ]
+swagger = [ "dep:utoipa", "dep:utoipa-swagger-ui" , "dep:utoipa-redoc", "dep:utoipa-rapidoc" ]
+frontend-bundle = [ ]
+gen_api = [ "dep:utoipa" ]

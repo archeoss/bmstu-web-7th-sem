@@ -1,0 +1,110 @@
+# [package]
+# name = "bob_management_gui"
+# version = "0.1.0"
+# edition = "2021"
+# description = "Bob Management GUI"
+# authors = ["Romanov Simeon ArchArcheoss@proton.me", "Artemev Ilia", "Riadinskii Kirill"]
+# license = "Unlicense"
+# repository = "https://lab.qoollo.com/practice/2023/qoollo-bob/management-web-client/bob-management-gui"
+# categories = [ "BOB",  "Management", "GUI"]
+# keywords = ["BOB", "Management", "GUI"]
+# readme = "./README.md"
+#
+# [workspace]
+# members = [ "bob-config" ]
+#
+# [dependencies]
+# axum = { version = "0.6" }
+# axum-macros = "0.3"
+# tracing = "0.1"
+# tracing-subscriber = "0.3"
+# tokio = { version = "1.0", features = ["full"] }
+# serde = { version = "1.0", features = ["derive"] }
+# serde_json = "1.0"
+# futures = "0.3"
+# percent-encoding = "2.3"
+# swagger = { version = "6.3", features = ["serdejson", "server", "client", "tls", "tcp"] }
+# serde_yaml = "0.9"
+# serde_with = "3.0"
+# tower = "0.4"
+# tower-http = { version = "0.4", features = ["cors"] }
+# axum-login = "0.5"
+# axum-sessions = "0.5"
+# hyper = { version = "0.14" }
+# rand = { version = "0.8", features = ["min_const_gen"] }
+# nutype = { version = "0.3", features = ["serde", "regex"] }
+# regex = "1.9"
+# lazy_static = "1.4"
+#
+# # Error Handling
+# color-eyre = "0.6"
+# thiserror = "1.0"
+#
+# # Conversion
+# frunk = { version = "0.4", features = ["serde"]}
+# frunk_derives = { version = "0.4"}
+# frunk_core = { version = "0.4", features = ["serde"]}
+# frunk-enum-derive = { version = "0.2" }
+# frunk-enum-core = { version = "0.2"}
+#
+# # CLI
+# bob-config = { path = "./bob-config" }
+#
+# [profile.release]
+# # Link Time optimization, causes a bit longer compilation
+# # lto = true 
+#
+# # Optimize for size
+# # opt-level = "s"
+# # Optimize for speed
+# opt-level = 3 
+#
+# # Strip symbols from binary; Turn off for cargo bloat command
+# strip = true 
+#
+# # Maximize size reduction optimization, causes longer compilation
+# codegen-units = 1 
+#
+# # Slightly increase perfomance and reduce binary size
+# panic = "abort"
+#
+# [profile.release-lto]
+# inherits = "release"
+# lto = true
+#
+# [profile.min-size]
+# inherits = "release"
+# opt-level = "s"
+[workspace.package]
+version = "0.0.0"   
+authors = ["Romanov Simeon ArchArcheoss@proton.me"]
+repository = "https://github.com/qoollo/bob-management"
+readme = "./README.md"
+license-file = "./LICENSE"
+edition = "2021"
+
+[workspace]
+members = [ "cli", "backend", "frontend" ]
+default-members = [ "backend",  "frontend" ]
+resolver = "2"
+
+[profile.release]
+# Optimize for size
+# opt-level = "s"
+# Optimize for speed
+opt-level = 3 
+
+# Slightly increase perfomance and reduce binary size
+panic = "abort"
+
+[profile.release-lto]
+inherits = "release"
+# Link Time optimization, causes a bit longer compilation
+lto = true
+# Maximize size reduction optimization, causes longer compilation
+codegen-units = 1 
+
+[profile.min-size]
+inherits = "release"
+opt-level = "s"
+

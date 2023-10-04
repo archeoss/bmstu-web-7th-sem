@@ -95,21 +95,21 @@ _Цель_: Запуск утилиты для восстановления да
 
 ## Компоненты системы
 
-![er](./docs/components.png)
+![comp](./docs/components.png)
 
 ## Интерфейс (Эскизы)
 
 ### Login Page
 
-![Login](./docs/Untitled-1-1.png.png)
+![Login](./docs/Untitled-1-1.png)
 
 ### Monitoring Screen
 
-![Monitoring](./docs/Untitled-2-1.png.png)
+![Monitoring](./docs/Untitled-2-1.png)
 
 ### Nodes Page
 
-![Nodes](./docs/Untitled-3-1.png.png)
+![Nodes](./docs/Untitled-3-1.png)
 
 ### Node Page
 
